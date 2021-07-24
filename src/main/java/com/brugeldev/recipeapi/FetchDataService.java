@@ -11,9 +11,9 @@ public interface FetchDataService extends JpaRepository<RecipeTable, Integer> {
     @Override
     List<RecipeTable> findAll();
 
-    @Query(value = "SELECT * FROM recipes WHERE ingredients LIKE %?1%", nativeQuery = true)
+    @Query(value = "SELECT * FROM recipes WHERE LOWER(ingredients) LIKE %?1%", nativeQuery = true)
     List<RecipeTable> findByIngredients(String ingredient);
 
-    @Query(value = "SELECT * FROM recipes WHERE title LIKE %?1%", nativeQuery = true)
+    @Query(value = "SELECT * FROM recipes WHERE LOWER(title) LIKE %?1%", nativeQuery = true)
     List<RecipeTable> findByTitle(String title);
 }

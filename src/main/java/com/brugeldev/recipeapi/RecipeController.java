@@ -10,7 +10,7 @@ import java.util.HashSet;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/Recipes")
+@RequestMapping(value = "/recipes")
 public class RecipeController {
 
     @Autowired

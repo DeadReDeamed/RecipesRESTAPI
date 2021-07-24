@@ -1,7 +1,5 @@
 package com.brugeldev.recipeapi;
 
-import org.springframework.boot.autoconfigure.web.WebProperties;
-
 import javax.persistence.*;
 
 @Entity
