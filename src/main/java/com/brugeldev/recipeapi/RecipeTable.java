@@ -10,6 +10,9 @@ public class RecipeTable {
     @Column(name = "id")
     public Long id;
 
+    @Column(name = "language")
+    public String language;
+
     @Column(name = "title")
     public String title;
 
@@ -46,8 +49,9 @@ public class RecipeTable {
         cookingTime = 0;
     }
 
-    public RecipeTable(Long id, String title, String imageURL, Integer servings, Integer cookingTime, String foodType, Integer calories, String ingredients, String instructions, String source, String sourceLink) {
-//        this.id = id;
+    public RecipeTable(Long id, String language, String title, String imageURL, Integer servings, Integer cookingTime, String foodType, Integer calories, String ingredients, String instructions, String source, String sourceLink) {
+        this.id = id;
+        this.language = language;
         this.title = title;
         this.imageURL = imageURL;
         this.servings = servings;
@@ -60,7 +64,8 @@ public class RecipeTable {
         this.sourceLink = sourceLink;
     }
 
-    public RecipeTable(String title, String imageURL, Integer servings, Integer cookingTime, String foodType, Integer calories, String ingredients, String instructions, String source, String sourceLink) {
+    public RecipeTable(String language,String title, String imageURL, Integer servings, Integer cookingTime, String foodType, Integer calories, String ingredients, String instructions, String source, String sourceLink) {
+        this.language = language;
         this.title = title;
         this.imageURL = imageURL;
         this.servings = servings;
@@ -71,6 +76,26 @@ public class RecipeTable {
         this.instructions = instructions;
         this.source = source;
         this.sourceLink = sourceLink;
+    }
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
+    }
+
+    public void setServings(Integer servings) {
+        this.servings = servings;
+    }
+
+    public void setCookingTime(Integer cookingTime) {
+        this.cookingTime = cookingTime;
+    }
+
+    public void setCalories(Integer calories) {
+        this.calories = calories;
     }
 
     public Long getId() {
