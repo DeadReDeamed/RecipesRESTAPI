@@ -10,7 +10,7 @@ public class RecipeTable {
     @Column(name = "id")
     public Long id;
 
-    @Column(name = "language")
+    @Column(name = "language_id")
     public String language;
 
     @Column(name = "title")
