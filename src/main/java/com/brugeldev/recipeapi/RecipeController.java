@@ -25,7 +25,7 @@ public class RecipeController {
             HashSet<RecipeTable> recipes = new HashSet<>();
 
             for (int i = 0; i < ingredientsSplit.length; i++){
-                recipes.addAll(fetchDataService.findByIngredientsNoLanguage(ingredientsSplit[i]));
+                recipes.addAll(fetchDataService.findByIngredientsNoLanguage(ingredientsSplit[i].toLowerCase()));
             }
             ArrayList<RecipeTable> recipeList = new ArrayList<>(recipes);
             return recipeList;
@@ -37,7 +37,7 @@ public class RecipeController {
         if(name.equals("") || name.isEmpty()){
             return null;
         } else {
-            return fetchDataService.findByTitleNoLanguage(name);
+            return fetchDataService.findByTitleNoLanguage(name.toLowerCase());
         }
     }
 
@@ -51,9 +51,9 @@ public class RecipeController {
 
             for (int i = 0; i < ingredientsSplit.length; i++){
                 if(language_id.equals("NL")) {
-                    recipes.addAll(fetchDataService.findByIngredientsNL(ingredientsSplit[i]));
+                    recipes.addAll(fetchDataService.findByIngredientsNL(ingredientsSplit[i].toLowerCase()));
                 } else {
-                    recipes.addAll(fetchDataService.findByIngredientsNoLanguage(ingredientsSplit[i]));
+                    recipes.addAll(fetchDataService.findByIngredientsNoLanguage(ingredientsSplit[i].toLowerCase()));
                 }
             }
             ArrayList<RecipeTable> recipeList = new ArrayList<>(recipes);
@@ -65,16 +65,17 @@ public class RecipeController {
     public List<RecipeTable> getRecipesWithName(@RequestParam String name, @RequestParam String language_id){
         if(name.equals("") || name.isEmpty()){
             if(language_id.equals("NL")) {
-                return fetchDataService.findAllLanguageNL(language_id);
+                return fetchDataService.findAllLanguageNL();
+            } else {
+                return fetchDataService.findAllNoLanguage();
             }
         } else {
             if(language_id.equals("NL")) {
-                return fetchDataService.findByTitleNL(name);
+                return fetchDataService.findByTitleNL(name.toLowerCase());
             } else {
-                return fetchDataService.findByTitleNoLanguage(name);
+                return fetchDataService.findByTitleNoLanguage(name.toLowerCase());
             }
         }
-        return null;
     }
 
 

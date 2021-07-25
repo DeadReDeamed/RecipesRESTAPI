@@ -12,7 +12,10 @@ public interface FetchDataService extends JpaRepository<RecipeTable, Integer> {
     List<RecipeTable> findAll();
 
     @Query(value = "SELECT * FROM recipes_NL", nativeQuery = true)
-    List<RecipeTable> findAllLanguageNL(String language_id);
+    List<RecipeTable> findAllLanguageNL();
+
+    @Query(value = "SELECT * FROM recipes_ENG", nativeQuery = true)
+    List<RecipeTable> findAllNoLanguage();
 
     @Query(value = "SELECT * FROM recipes_ENG WHERE LOWER(ingredients) LIKE %?1%", nativeQuery = true)
     List<RecipeTable> findByIngredientsNoLanguage(String ingredient);
