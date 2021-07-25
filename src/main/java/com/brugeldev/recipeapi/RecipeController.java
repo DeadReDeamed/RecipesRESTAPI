@@ -50,7 +50,11 @@ public class RecipeController {
             HashSet<RecipeTable> recipes = new HashSet<>();
 
             for (int i = 0; i < ingredientsSplit.length; i++){
-                recipes.addAll(fetchDataService.findByIngredients(ingredientsSplit[i], language_id));
+                if(language_id.equals("NL")) {
+                    recipes.addAll(fetchDataService.findByIngredientsNL(ingredientsSplit[i]));
+                } else {
+                    recipes.addAll(fetchDataService.findByIngredientsNoLanguage(ingredientsSplit[i]));
+                }
             }
             ArrayList<RecipeTable> recipeList = new ArrayList<>(recipes);
             return recipeList;
@@ -60,10 +64,17 @@ public class RecipeController {
     @RequestMapping(value = "/getRecipes", params = {"language_id","name"})
     public List<RecipeTable> getRecipesWithName(@RequestParam String name, @RequestParam String language_id){
         if(name.equals("") || name.isEmpty()){
-            return fetchDataService.findAllByLanguage(language_id);
+            if(language_id.equals("NL")) {
+                return fetchDataService.findAllLanguageNL(language_id);
+            }
         } else {
-            return fetchDataService.findByTitle(name, language_id);
+            if(language_id.equals("NL")) {
+                return fetchDataService.findByTitleNL(name);
+            } else {
+                return fetchDataService.findByTitleNoLanguage(name);
+            }
         }
+        return null;
     }
 
 

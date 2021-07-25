@@ -11,18 +11,18 @@ public interface FetchDataService extends JpaRepository<RecipeTable, Integer> {
     @Override
     List<RecipeTable> findAll();
 
-    @Query(value = "SELECT * FROM recipes WHERE language_id = ?1", nativeQuery = true)
-    List<RecipeTable> findAllByLanguage(String language_id);
+    @Query(value = "SELECT * FROM recipes_NL", nativeQuery = true)
+    List<RecipeTable> findAllLanguageNL(String language_id);
 
-    @Query(value = "SELECT * FROM recipes WHERE LOWER(ingredients) LIKE %?1% AND language_id = 'ENG'", nativeQuery = true)
+    @Query(value = "SELECT * FROM recipes_ENG WHERE LOWER(ingredients) LIKE %?1%", nativeQuery = true)
     List<RecipeTable> findByIngredientsNoLanguage(String ingredient);
 
-    @Query(value = "SELECT * FROM recipes WHERE LOWER(title) LIKE %?1% AND language_id = 'ENG'", nativeQuery = true)
+    @Query(value = "SELECT * FROM recipes_ENG WHERE LOWER(title) LIKE %?1%", nativeQuery = true)
     List<RecipeTable> findByTitleNoLanguage(String title);
 
-    @Query(value = "SELECT * FROM recipes WHERE LOWER(ingredients) LIKE %?1% AND language_id = ?2", nativeQuery = true)
-    List<RecipeTable> findByIngredients(String ingredient, String language);
+    @Query(value = "SELECT * FROM recipes_NL WHERE LOWER(ingredients) LIKE %?1%", nativeQuery = true)
+    List<RecipeTable> findByIngredientsNL(String ingredient);
 
-    @Query(value = "SELECT * FROM recipes WHERE LOWER(title) LIKE %?1% AND language_id = ?2", nativeQuery = true)
-    List<RecipeTable> findByTitle(String title, String language_id);
+    @Query(value = "SELECT * FROM recipes_NL WHERE LOWER(title) LIKE %?1%", nativeQuery = true)
+    List<RecipeTable> findByTitleNL(String title);
 }
