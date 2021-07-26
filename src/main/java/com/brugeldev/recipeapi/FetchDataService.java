@@ -7,25 +7,25 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface FetchDataService extends JpaRepository<RecipeTable, Integer> {
+public interface FetchDataService extends JpaRepository<Recipe, Integer> {
     @Override
-    List<RecipeTable> findAll();
+    List<Recipe> findAll();
 
     @Query(value = "SELECT * FROM recipes_NL", nativeQuery = true)
-    List<RecipeTable> findAllLanguageNL();
+    List<Recipe> findAllLanguageNL();
 
     @Query(value = "SELECT * FROM recipes_ENG", nativeQuery = true)
-    List<RecipeTable> findAllNoLanguage();
+    List<Recipe> findAllNoLanguage();
 
     @Query(value = "SELECT * FROM recipes_ENG WHERE LOWER(ingredients) LIKE %?1%", nativeQuery = true)
-    List<RecipeTable> findByIngredientsNoLanguage(String ingredient);
+    List<Recipe> findByIngredientsNoLanguage(String ingredient);
 
     @Query(value = "SELECT * FROM recipes_ENG WHERE LOWER(title) LIKE %?1%", nativeQuery = true)
-    List<RecipeTable> findByTitleNoLanguage(String title);
+    List<Recipe> findByTitleNoLanguage(String title);
 
     @Query(value = "SELECT * FROM recipes_NL WHERE LOWER(ingredients) LIKE %?1%", nativeQuery = true)
-    List<RecipeTable> findByIngredientsNL(String ingredient);
+    List<Recipe> findByIngredientsNL(String ingredient);
 
     @Query(value = "SELECT * FROM recipes_NL WHERE LOWER(title) LIKE %?1%", nativeQuery = true)
-    List<RecipeTable> findByTitleNL(String title);
+    List<Recipe> findByTitleNL(String title);
 }

@@ -1,11 +1,14 @@
 package com.brugeldev.recipeapi;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 
 @Entity
 @Table(name = "recipes")
-public class RecipeTable {
-
+public class Recipe {
     @Id
     @Column(name = "id")
     public Long id;
@@ -40,13 +43,13 @@ public class RecipeTable {
     @Column(name = "sourceLink")
     public String sourceLink;
 
-    public RecipeTable(){
+    public Recipe(){
         servings = 0;
         calories = 0;
         cookingTime = 0;
     }
 
-    public RecipeTable(Long id, String title, String imageURL, Integer servings, Integer cookingTime, String foodType, Integer calories, String ingredients, String instructions, String source, String sourceLink) {
+    public Recipe(Long id, String title, String imageURL, Integer servings, Integer cookingTime, String foodType, Integer calories, String ingredients, String instructions, String source, String sourceLink) {
         this.id = id;
         this.title = title;
         this.imageURL = imageURL;
@@ -60,7 +63,7 @@ public class RecipeTable {
         this.sourceLink = sourceLink;
     }
 
-    public RecipeTable(String title, String imageURL, Integer servings, Integer cookingTime, String foodType, Integer calories, String ingredients, String instructions, String source, String sourceLink) {
+    public Recipe(String title, String imageURL, Integer servings, Integer cookingTime, String foodType, Integer calories, String ingredients, String instructions, String source, String sourceLink) {
         this.title = title;
         this.imageURL = imageURL;
         this.servings = servings;
